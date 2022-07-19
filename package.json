@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "./src/renderer/main.ts",
   "scripts": {
     "dev": "esno build/dev-runner.ts",
     "build": "vue-tsc --noEmit && vite build",

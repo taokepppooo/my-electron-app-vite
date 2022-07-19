@@ -5,5 +5,5 @@
     "module": "esnext",
     "moduleResolution": "node"
   },
-  "include": ["./vite.config.ts"]
+  "include": ["build/vite.renderer.config.ts"]
 }
