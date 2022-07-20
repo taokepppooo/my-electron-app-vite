@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import { join, resolve } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
@@ -9,7 +9,8 @@ export default defineConfig({
   root,
   base: './',
   build: {
-    target: 'esnext'
+    target: 'esnext',
+    outDir: join(resolve(), 'dist/electron/renderer')
   },
   plugins: [vue()],
 })

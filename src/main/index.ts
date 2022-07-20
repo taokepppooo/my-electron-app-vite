@@ -18,7 +18,7 @@ function createWindow () {
       preload: join(__dirname, 'preload.ts')
     }
   })
-  mainWindow.loadFile(join(resolve(), 'src/renderer/index.html'))
+  mainWindow.loadFile('../renderer/index.html')
 }
 
 app.whenReady().then(() => {

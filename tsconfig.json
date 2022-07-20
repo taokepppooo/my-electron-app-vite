@@ -6,7 +6,9 @@
     "jsx": "preserve",
     "sourceMap": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "moduleResolution": "node",
+    "resolveJsonModule": true
   },
   "include": ["build/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]

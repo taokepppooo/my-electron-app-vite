@@ -2,6 +2,7 @@ import { sync } from 'del'
 import Multispinner from 'multispinner'
 import { build } from 'vite'
 import { join, resolve } from 'path'
+import { build as esbuild } from 'esbuild'
 
 const __dirname = resolve('build')
 
@@ -36,8 +37,24 @@ function unionBuild() {
   })
 
   // vite打包需要index.html入口，所以此处使用rollup打包
+  esbuild({
+    minify: true,
+    bundle: true,
+    splitting: true,
+    entryPoints: ['src/main/index.ts'],
+    sourcemap: 'external',
+    outdir: join(resolve(), 'dist/electron/main'),
+    platform: 'node',
+    format: 'esm',
+    target: ['esnext']
+  }).then(res => {
+    m.success('main')
+  }).catch((err) => {
+    m.error('main')
+    console.error(`\n${err}\n`)
+    process.exit(1)
+  })
 
-  
   build({ configFile: join(__dirname, 'vite.renderer.config.ts') }).then(res => {
     m.success('renderer')
   }).catch(err => {
