@@ -8,5 +8,8 @@ export default defineConfig({
   mode: process.env.NODE_ENV,
   root,
   base: './',
-  plugins: [vue()]
+  build: {
+    target: 'esnext'
+  },
+  plugins: [vue()],
 })

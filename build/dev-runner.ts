@@ -1,11 +1,11 @@
-process.env.NODE_ENV = 'development'
-process.env.PORT = '3000'
-
+import electron from 'electron'
 import { createServer } from 'vite'
 import { spawn } from 'child_process'
 import { join, resolve } from 'path'
 import chalk from 'chalk'
 
+process.env.NODE_ENV = 'development'
+process.env.PORT = '3000'
 const __dirname = resolve('build')
 
 function startRenderer(): Promise<void> {
@@ -24,7 +24,8 @@ function startMain(): Promise<void> {
 }
 
 function startElectron () {
-  spawn('electron dist/main.js')
+  // spawn(electron as any, [join(resolve(), 'dist/main/index.js')] as string[])
+  spawn(electron as any)
 }
 
 async function init() {
