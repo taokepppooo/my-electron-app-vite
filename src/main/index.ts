@@ -1,7 +1,7 @@
 import { app, BrowserWindow, ipcMain, dialog } from 'electron'
 import { join, resolve } from 'path'
 
-const __dirname = resolve('src/main')
+const _dirname = resolve('src/main')
 
 async function handleFileOpen() {
   const { canceled, filePaths } = await dialog.showOpenDialog(null)
@@ -14,8 +14,10 @@ async function handleFileOpen() {
 
 function createWindow () {
   const mainWindow = new BrowserWindow({
+    width: 800, 
+    height: 600,
     webPreferences: {
-      preload: join(__dirname, 'preload.ts')
+      preload: join(_dirname, 'preload.ts')
     }
   })
   mainWindow.loadFile('../renderer/index.html')

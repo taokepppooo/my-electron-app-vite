@@ -4,7 +4,7 @@ import { build } from 'vite'
 import { join, resolve } from 'path'
 import { build as esbuild } from 'esbuild'
 
-const __dirname = resolve('build')
+const _dirname = resolve('build')
 
 if (process.env.BUILD_TARGET === 'clean') {
   clean()
@@ -38,15 +38,14 @@ function unionBuild() {
 
   // vite打包需要index.html入口，所以此处使用rollup打包
   esbuild({
-    minify: true,
+    // minify: true,
     bundle: true,
-    splitting: true,
     entryPoints: ['src/main/index.ts'],
     sourcemap: 'external',
     outdir: join(resolve(), 'dist/electron/main'),
     platform: 'node',
-    format: 'esm',
-    target: ['esnext']
+    format: 'cjs',
+    target: ['node16']
   }).then(res => {
     m.success('main')
   }).catch((err) => {
@@ -55,7 +54,7 @@ function unionBuild() {
     process.exit(1)
   })
 
-  build({ configFile: join(__dirname, 'vite.renderer.config.ts') }).then(res => {
+  build({ configFile: join(_dirname, 'vite.renderer.config.ts') }).then(res => {
     m.success('renderer')
   }).catch(err => {
     m.error('renderer')
@@ -67,7 +66,7 @@ function unionBuild() {
 function web() {
   sync(['dist/web/*'])
 
-  build({ configFile: join(__dirname, 'vite.web.config.ts') }).then(res => {
+  build({ configFile: join(_dirname, 'vite.web.config.ts') }).then(res => {
     process.exit()
   }).catch(err => {
     console.error(`\n${err}\n`)

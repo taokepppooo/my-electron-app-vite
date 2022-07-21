@@ -2,12 +2,11 @@
   "name": "my-electron-app-vite",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "main": "dist/electron/main/index.js",
   "scripts": {
     "start": "esno build/dev-runner.ts",
-    "build": "esno build/build.ts",
-    "preview": "vite preview"
+    "build": "esno build/build.ts && electron-builder -c build.json",
+    "postinstall": "node node_modules/electron/install.js"
   },
   "dependencies": {
     "vue": "^3.2.25"
@@ -18,6 +17,7 @@
     "chalk": "^5.0.1",
     "del": "^6.1.1",
     "electron": "^19.0.8",
+    "electron-builder": "^23.1.0",
     "esbuild": "^0.14.49",
     "esno": "^0.16.3",
     "multispinner": "^0.2.1",

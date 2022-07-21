@@ -7,11 +7,11 @@ import chalk from 'chalk'
 
 process.env.NODE_ENV = 'development'
 process.env.PORT = '3000'
-const __dirname = resolve('build')
+const _dirname = resolve('build')
 
 function startRenderer(): Promise<void> {
   return new Promise(async (resolve, reject) => {
-    const server = await createServer({ configFile: join(__dirname, 'vite.renderer.config.ts') })
+    const server = await createServer({ configFile: join(_dirname, 'vite.renderer.config.ts') })
     server.listen(9080)
     resolve()
   })
@@ -19,14 +19,14 @@ function startRenderer(): Promise<void> {
 
 function startMain(): Promise<void> {
   return new Promise((resolve, reject) => {
-    const main = join(__dirname, 'vite.main.config.ts')
+    const main = join(_dirname, 'vite.main.config.ts')
     resolve()
   })
 }
 
 function startElectron () {
   const childProcess: ChildProcess = spawn(electron as any, [join(resolve(), 'dist/electron/main/index.js')] as string[])
-  console.log(childProcess.stderr)
+  // console.log(childProcess.stderr)
 }
 
 async function init() {
