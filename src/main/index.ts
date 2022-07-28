@@ -4,7 +4,7 @@ import { join, resolve } from 'path'
 const _dirname = resolve('src/main')
 
 async function handleFileOpen() {
-  const { canceled, filePaths } = await dialog.showOpenDialog(null)
+  const { canceled, filePaths } = await dialog.showOpenDialog({})
   if (canceled) {
     return
   } else {

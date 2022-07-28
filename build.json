@@ -1,5 +1,5 @@
 {
-  "appId": "com.example.app",
+  "appId": "com.skylark.app",
   "directories": {
     "output": "dist/electron/electron"
   },
