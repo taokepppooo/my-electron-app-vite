@@ -12,22 +12,16 @@
     "vue": "^3.2.25"
   },
   "devDependencies": {
-    "@rollup/plugin-alias": "^3.1.9",
-    "@rollup/plugin-commonjs": "^22.0.1",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.3.0",
     "@types/node": "^18.0.6",
     "@vitejs/plugin-vue": "^2.2.0",
     "chalk": "^5.0.1",
     "del": "^6.1.1",
     "electron": "^19.0.8",
     "electron-builder": "^23.1.0",
-    "esbuild": "^0.14.49",
+    "esbuild": "^0.14.51",
     "esno": "^0.16.3",
     "multispinner": "^0.2.1",
     "ora": "^6.1.2",
-    "rollup": "^2.77.2",
-    "rollup-plugin-esbuild": "^4.9.1",
     "typescript": "^4.5.4",
     "vite": "^2.8.0",
     "vue-tsc": "^0.29.8"
