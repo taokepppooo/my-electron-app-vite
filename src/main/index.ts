@@ -20,7 +20,6 @@ function createWindow () {
       preload: join(_dirname, 'preload.ts')
     }
   })
-  mainWindow.loadFile('../renderer/index.html')
 }
 
 app.whenReady().then(() => {

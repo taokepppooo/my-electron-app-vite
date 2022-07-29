@@ -11,6 +11,7 @@ const _dirname = resolve('build')
 
 function startRenderer(): Promise<void> {
   return new Promise(async (resolve, reject) => {
+    // 前端渲染页面先启动一个服务，electron直接访问服务上的页面进行渲染
     const server = await createServer({ configFile: join(_dirname, 'vite.renderer.config.ts') })
     server.listen(9080)
     resolve()
@@ -19,7 +20,6 @@ function startRenderer(): Promise<void> {
 
 function startMain(): Promise<void> {
   return new Promise((resolve, reject) => {
-    const main = join(_dirname, 'vite.main.config.ts')
     resolve()
   })
 }
