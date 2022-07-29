@@ -1,4 +1,0 @@
-{
-  "extends": "../tsconfig.node.json",
-  "include": ["build/vite.renderer.config.ts"]
-}

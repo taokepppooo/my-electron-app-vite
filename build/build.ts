@@ -2,8 +2,10 @@ import { sync } from 'del'
 import Multispinner from 'multispinner'
 import { build } from 'vite'
 import { join, resolve } from 'path'
-import { build as esbuild } from 'esbuild'
+import { rollup, OutputOptions } from 'rollup'
+import rollupOptions from './rollup.config'
 
+const mainOpt = rollupOptions(process.env.NODE_ENV, "main")
 const _dirname = resolve('build')
 
 if (process.env.BUILD_TARGET === 'clean') {
@@ -36,21 +38,13 @@ function unionBuild() {
     process.exit()
   })
 
-  // vite打包需要index.html入口，所以此处使用rollup打包
-  esbuild({
-    // minify: true,
-    bundle: true,
-    entryPoints: ['src/main/index.ts'],
-    sourcemap: 'external',
-    outdir: join(resolve(), 'dist/electron/main'),
-    platform: 'node',
-    format: 'cjs',
-    target: ['node16']
-  }).then(res => {
-    m.success('main')
-  }).catch((err) => {
+  rollup(mainOpt).then(build => {
+    build.write(mainOpt.output as OutputOptions).then(() => {
+      m.success('main')
+    })
+  }).catch(error => {
     m.error('main')
-    console.error(`\n${err}\n`)
+    console.error(`\n${error}\n`)
     process.exit(1)
   })
 

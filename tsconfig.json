@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "baseUrl": ".",
     "useDefineForClassFields": true,
     "strict": true,
     "jsx": "preserve",
@@ -8,8 +9,25 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "moduleResolution": "node",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "composite": true,
+    "module": "esnext",
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@renderer/*": [
+        "src/renderer/*"
+      ],
+      "@main/*": [
+        "src/main/*"
+      ],
+    },
   },
-  "include": ["build/*.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src/**/*",
+    "build/*.ts",
+    "package.json"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
