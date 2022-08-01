@@ -3,6 +3,7 @@
     "target": "esnext",
     "baseUrl": ".",
     "useDefineForClassFields": true,
+    "strictNullChecks": false,
     "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
@@ -25,6 +26,8 @@
   "include": [
     "src/**/*",
     "build/*.ts",
+    "env/*.ts",
+    "types/**/*.ts",
     "package.json"
   ],
   "exclude": [

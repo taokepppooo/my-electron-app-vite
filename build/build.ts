@@ -3,14 +3,15 @@ import { build } from 'vite'
 import { join, resolve } from 'path'
 import { build as esbuild } from 'esbuild'
 import type { CommonOptions } from 'esbuild'
+import { BuildOptions } from 'types'
 import { esbuildOpt } from './esbuild.config'
 
 const _dirname = resolve('build')
 
 if (process.env.BUILD_TARGET === 'clean') {
   clean()
-} else if (process.env.BUILD_TARGET === 'web') {
-  web()
+} else if (process.env.BUILD_TARGET === 'main') {
+  main()
 } else {
   unionBuild()
 }
@@ -24,27 +25,30 @@ function unionBuild() {
   sync(['dist/electron/*'])
   if (process.env.BUILD_TARGET === 'clean' || process.env.BUILD_TARGET === 'onlyClean') clean()
 
+  main({ isDel: false })
+
+  renderer({ isDel: false })  
+}
+
+function main(opt?: BuildOptions) {
+  if (!opt) {
+    sync(['dist/electron/*'])
+  }
+
   // vite打包需要index.html入口，所以此处使用rollup打包
   esbuild(esbuildOpt as CommonOptions).then(res => {
   }).catch((err) => {
-    console.error(`\n${err}\n`)
-    process.exit(1)
-  })
-
-  build({ configFile: join(_dirname, 'vite.renderer.config.ts') }).then(res => {
-  }).catch(err => {
-    console.error(`\n${err}\n`)
     process.exit(1)
   })
 }
 
-function web() {
-  sync(['dist/web/*'])
+function renderer (opt?: BuildOptions) {
+  if (!opt) {
+    sync(['dist/electron/*'])
+  }
 
-  build({ configFile: join(_dirname, 'vite.web.config.ts') }).then(res => {
-    process.exit()
+  build({ configFile: join(_dirname, 'vite.renderer.config.ts') }).then(res => {
   }).catch(err => {
-    console.error(`\n${err}\n`)
     process.exit(1)
   })
 }
