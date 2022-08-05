@@ -1,3 +1,3 @@
-interface BuildOptions {
+export interface BuildOptions {
   isDel?: true | false
 }

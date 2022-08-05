@@ -10,7 +10,6 @@ export default {
     env: dev,
     removeElectronJunk: true,
     chineseLog: false,
-    port: 3000,
   },
   BuiltInServerPort: 25565
 }

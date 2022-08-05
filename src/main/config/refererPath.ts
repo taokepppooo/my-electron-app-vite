@@ -17,10 +17,9 @@ class RefererPath {
 const refererPath = new RefererPath()
 
 function getUrl (devUrl: string) {
-  const url = new URL(`http://localhost:${envConfig.dev.port}`)
-  console.log(url)
+  const url = new URL(envConfig.dev.env.BASE_URL)
   url.pathname = devUrl
   return url.href
 }
 
-export const refererUrl = getUrl(join(refererPath.__static, 'index.html'))
+export const refererUrl = getUrl(join("."))

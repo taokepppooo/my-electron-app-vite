@@ -14,7 +14,6 @@ class MainInit {
     this.mainWindow = new BrowserWindow({
       ...Object.assign(windowConfig, {})
     })
-    console.log(refererUrl)
     this.mainWindow.loadURL(refererUrl)
   }
 
