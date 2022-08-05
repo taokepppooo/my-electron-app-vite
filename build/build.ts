@@ -5,6 +5,8 @@ import { build as esbuild } from 'esbuild'
 import type { CommonOptions } from 'esbuild'
 import { BuildOptions } from 'types/build'
 import { esbuildOpt } from './esbuild.config'
+import ora from 'ora'
+import chalk from 'chalk'
 
 const _dirname = resolve('build')
 
@@ -35,8 +37,11 @@ export function main(opt?: BuildOptions) {
     sync(['dist/electron/*'])
   }
 
-  // vite打包需要index.html入口，所以此处使用rollup打包
+  const spinner = ora('主线程打包').start()
+  // esbuild打包，打包快速
   esbuild(esbuildOpt as CommonOptions).then(res => {
+    spinner.color = 'yellow'
+    spinner.text = '打包中...'
   }).catch((err) => {
     process.exit(1)
   })

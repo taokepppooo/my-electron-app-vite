@@ -5,9 +5,8 @@ import type { ChildProcess } from 'child_process'
 import { join, resolve } from 'path'
 import envConfig from '../env'
 import { main as buildMain } from './build'
-import chalk from 'chalk'
+import { watch } from 'chokidar'
 
-let electronProcess: ChildProcess | null = null
 let manualRestart = false
 
 function startRenderer(): Promise<void> {
@@ -21,8 +20,10 @@ function startRenderer(): Promise<void> {
 
 function startMain(): Promise<void> {
   return new Promise((resolve) => {
-    buildMain()
-    resolve()
+    watch('src/main').on('all', () => {
+      buildMain()
+      resolve()
+    })
   })
 }
 

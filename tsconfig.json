@@ -28,6 +28,7 @@
     "build/*.ts",
     "env/*.ts",
     "types/**/*.ts",
+    "utils/**/*.ts",
     "package.json"
   ],
   "exclude": [
