@@ -7,6 +7,9 @@
     "start": "esno build/dev-runner.ts",
     "build": "esno build/build.ts && electron-builder -c build.json",
     "build:main": "cross-env BUILD_TARGET=main esno build/build.ts",
+    "build:win32": "cross-env BUILD_TARGET=clean esno build/build.ts  && electron-builder -c build.json --win  --ia32",
+    "build:win64": "cross-env BUILD_TARGET=clean esno build/build.ts  && electron-builder -c build.json --win  --x64",
+    "build:mac": "cross-env BUILD_TARGET=clean esno build/build.ts  && electron-builder -c build.json --mac",
     "postinstall": "node node_modules/electron/install.js"
   },
   "dependencies": {
@@ -22,7 +25,6 @@
     "electron-builder": "^23.1.0",
     "esbuild": "^0.14.51",
     "esno": "^0.16.3",
-    "multispinner": "^0.2.1",
     "typescript": "^4.5.4",
     "vite": "^2.8.0",
     "vue-tsc": "^0.29.8"
