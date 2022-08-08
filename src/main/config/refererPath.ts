@@ -1,6 +1,8 @@
 import { join } from 'path'
 import envConfig from 'env'
 
+const isDev = process.env.NODE_ENV === 'development'
+
 class RefererPath {
   constructor() {
     this.__static = join(__dirname, '..', 'renderer')
@@ -16,10 +18,10 @@ class RefererPath {
 
 const refererPath = new RefererPath()
 
-function getUrl (devUrl: string) {
-  const url = new URL(envConfig.dev.env.BASE_URL)
-  url.pathname = devUrl
+function getUrl (devUrl: string, proUrl: string) {
+  const url = isDev ? new URL(envConfig.dev.env.BASE_URL) : new URL('file://')
+  url.pathname = isDev ? devUrl : proUrl
   return url.href
 }
 
-export const refererUrl = getUrl(join("."))
+export const refererUrl = getUrl(join("."), join(__dirname, '..', 'renderer', 'index.html'))

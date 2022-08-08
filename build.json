@@ -1,7 +1,8 @@
 {
+  "asar": false,
   "appId": "com.skylark.app",
   "directories": {
-    "output": "dist/electron/electron"
+    "output": "pack"
   },
   "files": [
     "dist/electron/**/*"
